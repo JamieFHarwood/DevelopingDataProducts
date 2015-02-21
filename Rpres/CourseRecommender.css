@@ -1,0 +1,9 @@
+
+.reveal h3  {color: #7777bb}
+
+.section .reveal .state-background {
+    background: none repeat scroll 0 0 #7777bb;
+}
+.section .reveal .state-background .navigate-right{
+  color: white;
+}

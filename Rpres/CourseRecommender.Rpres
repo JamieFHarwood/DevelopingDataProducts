@@ -1,0 +1,78 @@
+Course Recommendation App
+========================================================
+author: Jamie Harwood
+date: `r date()`
+transition: rotate
+css: CourseRecommender.css
+
+"Taking the guesswork out of choosing an online course"
+
+The Problem
+========================================================
+
+
+  - There are a growing number of courses available on MOOCS (Massive Open Online Course) platforms such as Coursera. How do you decide which course is right for you?
+
+  - The course descriptions are often short and course content often not available until you have signed up
+
+  - Wouldn't it be nice if, when you stumbled across an interesting article or tutorial you could use the information in that resource to automatically choose your next course with Coursera?
+
+  - My Recommendatation App does just that!
+
+
+How it works
+========================================================
+
+  - A random forest machine learning algorithm is used to train a model using previous course content  
+  - This model is then used to classify new material provided by the user in the form of a url
+  - The url data is downloaded and prepared so it can be fitted to the model  
+  - A recommendation for a module within the Data Science specialization is given along with an accuracy measure
+  - Content which does not appear to be about data science is flagged
+
+
+Word cloud feature
+========================================================
+
+<div style="font-size: 0.75em;line-height:1.5">As well as a prediction the user is given a comparison of two word clouds like the one below so they can visually assess the similarity between the suggested course and the data they provided.  The word clouds are made up of the most frequent terms found in the content</div><center>
+```{r echo = F, fig.width = 7, fig.height = 7}
+## load the data for the Regression course
+load("../shinyApp/courseTermFreqs.RData")
+## we now have a list called courseTermFreqs with all of the courses top 200 term frequencies
+regressionCourse <- courseTermFreqs["RegressionModels"][[1]]
+library(wordcloud)
+wordcloud(names(regressionCourse), regressionCourse,colors=brewer.pal(6,"Dark2"),random.order=FALSE, max.words = 100)
+
+
+```
+
+</center>
+
+RChart feature
+========================================================
+
+<div style="font-size: 0.75em;line-height:1.5">The user also sees two interactive line charts like this one so that they can compare the relative frequencies of those terms that were actually used in the model</div>
+
+```{r inline, echo = F, fig.width = 8, fig.height = 8, results= "asis", comment = NA}
+## Create an R chart
+load("../shinyApp/courseModelFreqs.RData")
+## we now have a list called courseModelFreqs with all of the terms in the model and their counts by course
+regressionModelTerms <- as.data.frame(courseModelFreqs["RegressionModels"])
+names(regressionModelTerms) <- c("terms", "frequency", "source")
+library(rCharts)
+ h1<- hPlot(
+        x = "terms", 
+        y = "frequency", 
+        data = regressionModelTerms, 
+        type = "line",
+        title="Average Term frequencies per lecture for the course material",
+        color = "green")
+      h1$colors("orange", "lightgreen")
+      h1$yAxis(title = list(enabled = TRUE, text = 'Average Term Frequency'))
+      h1$xAxis(title = list(enabled = TRUE, text = 'Term index'))
+      h1$params$width <- 1000
+      h1$show('inline', include_assets = TRUE, cdn = TRUE)
+
+```
+
+<div style="font-size: 0.75em;line-height:1.5">The recommender app is a quick, easy and fun way for the budding data scientist to find their next course of study.   </div>
+<center>[Try it now for free!] (https://jamiefharwood.shinyapps.io/shinyApp/)</center>
