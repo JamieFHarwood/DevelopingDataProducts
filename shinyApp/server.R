@@ -99,7 +99,7 @@ shinyServer(
    
     ## From here we are binding values to ui widgets
     output$inputValue <- renderText({
-     
+      
        userUrl
     })
     
@@ -126,6 +126,7 @@ shinyServer(
     ## Labels for word clouds
     output$userCloud <- renderText({
       userUrl
+      
     })  
     output$courseCloud <- renderText({
       prediction()
@@ -194,10 +195,14 @@ shinyServer(
       h1
         
     })
+    })
+    output$documentation <- renderText({
+      doco
+      })
       
 
    
-  })
+
 
 })
 

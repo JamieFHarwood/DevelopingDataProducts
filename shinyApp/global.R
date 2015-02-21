@@ -14,7 +14,7 @@ load(file = "fit.RData")
 load(file = "courseTermFreqs.RData")
 load(file = "longWords.RData")
 load(file = "courseModelFreqs.RData")
-
+doco <- scan(file="doco.txt", what="character")
 ## Take a url and generate a corpus from the terms in the destination web page
 getUserCorpus <- function(url){
 

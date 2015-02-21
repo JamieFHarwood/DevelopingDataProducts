@@ -1,0 +1,40 @@
+'<h3> Summary</h3>
+<p>This app will recommend a course of study from the Coursera based Data Science Specialization based upon the details of an article or blog or tutorial that you supply in the form of a url.  Text from the url you supply will be downloaded, prepared and then compared to the content of all of the courses in the specialization.</p>
+<p>The one that most closely matches the data you supply will be recommended for you as a potential course of study</p>
+
+<h3>Limitation</h3>
+
+<ul>
+<li>Only courses that form part of the Data Specialization will be recommended</li>
+<li>As the courses are written in English, only English language web sites are likely to work</li>
+<li>Only html based resources served over the http (not https) protocol are likely to work</li>
+</ul>
+
+<h3>How to use</h3>
+<p>Simply type in the full url of a data science based website that you found interesting.  Use the full url as in:</p>
+<br />
+<a href=" http://www.ddiez.com/teac/r/basics.php" target="_blank"> http://www.ddiez.com/teac/r/basics.php/</a>
+<br />
+<br />
+<p>And click the "Recommend Course" button on the left control panel.</p>
+
+<p>After a short period you should get a recommendation</p>.  The details include:
+
+<ul>
+<li>Confirmation of the url you entered or, if the url was invalid, a Red highlighted warning</li>
+<li>A recommended course name plus a percentage that represents the probability that the underlying prediction is correct</li>
+<li>If the system believes the provided url is not about data science it will tell you so</li>
+<li>Two word clouds.  These contain the top 200 terms in the content you provided via the url and in the material for the predicted course.  This gives you the opportunity to compare the material by eye</li>
+<li>Two interactive line charts that display all of the terms used in the model prediction so you can compare patterns in the data</li>
+</ul>
+
+<h3>Control Panels</h3>
+
+<p>On the left of the screen is the control panel where you enter your url.  If you cannot think of a url, I have provided 4 examples: 3 about data science and one not.  To use these examples, click them and click the "Recommend Course" button.</p>
+
+<p>The Word Cloud Control allows you to modify the number of terms that are included in the wordclouds.  It can be helpful to start with just a few terms and then "zoom up" to get a good appreciation of the differences and similarities in the two sets of data.</p>
+
+<p>The Chart Control allows you to modify the number of terms used in the model that are displayed in the line chart.  Again, starting with fewer entries is helpful for identifying patterns that explain why the model recommended the given course.</p>
+
+<p>The line charts are interactive so as you drag your mouse across them you will see the detail of the term including the text and a number which represents the average number of times the term was seen in lectures for the recommended course, or, in the case of the user supplied data, the raw frequencies for each term found at the url.</p>'
+

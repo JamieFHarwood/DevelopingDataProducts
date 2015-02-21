@@ -45,7 +45,7 @@ shinyUI(
       radioButtons("radio", label = "",
           choices = list("Caret Tutorial" = "http://topepo.github.io/caret/training.html", 
             "Wikipedia on Students T-test" = "http://en.wikipedia.org/wiki/Student%27s_t-test", 
-            "R programming Turtorial" = "http://www.ddiez.com/teac/r/basics.php",
+            "R programming Tutorial" = "http://www.r-bloggers.com/using-apply-sapply-lapply-in-r/",
             "CNN News" = "http://cnn.com/news")),
       actionButton("goButton", "Recommend Course"),
       hr(),
@@ -70,19 +70,24 @@ shinyUI(
       ),
     
     mainPanel(
-      fluidRow(
-        h3('Course Recommendatation'),
-        h4('You entered'),
-        htmlOutput("inputValue"),
-        h4('Based upon similarity with previous course content, we recommend you enrol for the following course: '),
-        verbatimTextOutput("outputValue")
-      ),
-      fluidRow(
-        column(textOutput("userCloud"),plotOutput("plotUser"), width = 6),
-        column(textOutput("courseCloud"),plotOutput("plotCourse"), width = 6)
-      ),
-      showOutput("userChart", "highcharts"),
-      showOutput("courseChart", "highcharts")
+      tabsetPanel(type = "tabs",
+        tabPanel("Recommendations",
+          fluidRow(
+            h3('Course Recommendatation'),
+            h4('You entered'),
+            htmlOutput("inputValue"),
+            h4('Based upon similarity with previous course content, we recommend you enrol for the following course: '),
+            verbatimTextOutput("outputValue")
+          ),
+          fluidRow(
+            column(textOutput("userCloud"),plotOutput("plotUser"), width = 6),
+            column(textOutput("courseCloud"),plotOutput("plotCourse"), width = 6)
+          ),
+          showOutput("userChart", "highcharts"),
+          showOutput("courseChart", "highcharts")
+        ),
+        tabPanel("Documentation", htmlOutput("documentation"))
+      )
     )
   )
 )
