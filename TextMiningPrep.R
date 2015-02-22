@@ -14,7 +14,8 @@ set.seed(4321)
 rmds<- dir(path=".", pattern="*\\.md", recursive=T)
 ## Get a list of course names from file paths
 courseNames <- str_match(rmds, "/\\d\\d_(.+?)/")[,2]
-
+## we get a couple of nas because of our new md files
+courseNames <- courseNames[!is.na(courseNames)]
 ## Create a temporary corpus from this data
 corpus <- VCorpus(DirSource(
   directory="/home/jamie/DataProductsProject/courses", pattern = ".*\\.md", recursive = T ))
@@ -63,7 +64,7 @@ testingNzv$Y_outcome <- as.factor(testingOutcomes)
 
 fitNzv <- randomForest(Y_outcome ~ ., data = trainingNzv)
 #fitPca <- train(Y_outcome ~ ., method = "rf", data =  trainingNzv)
-predNzv <- predict(fitPca, newdata = testingNzv, method = "prob")
+predNzv <- predict(fitPca, newdata = testingNzv)
 
 confusionMatrix(predNzv, testingNzv$Y_outcome)
 
